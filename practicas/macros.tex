@@ -1,0 +1,26 @@
+\usepackage[]{tcolorbox}
+\usepackage{varwidth}   %% provides varwidth environment
+\usepackage{empheq}
+\usepackage{adjustbox}
+
+
+\newcommand*{\cajados}[1]{\noindent\fbox{%
+\parbox{\textwidth}{%
+    #1
+}%
+}}
+\newcommand{\caja}[1]{\begin{empheq}[box=\fbox]{alignat*=8}
+    #1
+\end{empheq}}
+
+\newcommand*{\objetivodos}[2]{#1 x_{1} + #2 x_{2}}
+\newcommand*{\objetivotres}[3]{#1 x_{1} + #2 x_{2} + #3x_{3}}
+\newcommand*{\restdos}[3]{#1 x_{1} + #2 x_{2} \le #3}
+\newcommand*{\irestdos}[3]{#1 x_{1}  #2 x_{2} = #3}
+\newcommand*{\iresttres}[4]{#1 x_{1}  #2 x_{2} #3x_{3} = #4}
+
+\newcommand*{\resttres}[4]{#1 x_{1} + #2 x_{2} + #3 x_{3} \le #4}
+\newcommand*{\restuno}[2]{#1 x_{1} \le #2}
+\newcommand{\posit}[1]{x_{#1} \ge 0}
+
+\newcommand{\R}{\mathbb{R}}

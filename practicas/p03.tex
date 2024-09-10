@@ -1,0 +1,211 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\input{macros.tex}
+\usepackage[]{mdframed}
+
+%TCIDATA{TCIstyle=Article/art4.lat,jart,sw20jart}
+\usepackage{amsmath,amsthm,amssymb, amsfonts, amscd, enumerate, multicol}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{LastRevised=Thu Feb 05 14:33:37 2004}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=Spanish}
+
+%\input tcilatex
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16.5cm}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\oddsidemargin}{0cm}
+
+
+\begin{document}
+    \begin{center}
+        {\bf UNIVERSIDAD DE SAN ANDR\'ES}
+        \medskip
+        
+        {\bf Investigación operativa.}
+        \medskip
+        
+        {\bf Ejercitaci\'on 3: Programación no lineal.}
+        \medskip
+
+
+        \begin{enumerate}
+            \item Resolver los siguientes problemas de programación no-lineal mediante la función
+            \emph{minimize()} en Python. 
+            Para asegurarse de que llegan al óptimo global, aplicar la técnica
+            de semillas randomizadas.
+            \begin{enumerate}[a)]
+                \item 
+                    \caja{
+                        \min  (x_{1} -2)^{2} + & (x_{1}-1)(x_{2} -1) + (x_{2} -3)^{2} \\
+                        \\
+                        & x_{2} = 2x_{1} + 2 \\
+                        & x_{1}^{2} + x_{2}^{2} \le 8
+                    }
+                
+                \item 
+                    \caja{
+                        \min \tfrac{1}{5}(x_{1} - 1)^{6} - \tfrac{5}{4}(x_{1} - 1)^{4} + 2(x_{1} -1)^{2} + \tfrac{1}{4}(x_{2} - 3)^{6} -\tfrac{5}{4}(x_{2} - 3)^{4} + 
+                        2(x_{2}  - 3)^{2}
+                    }
+            \end{enumerate}
+            \medskip 
+            \medskip 
+            \textbf{Recuerdo:}
+            Dados dos puntos $(x_{0},y_{0}), (x_{1},y_{1}) \in \R^{2}$ su distancia se calcula como:
+            \[
+                d((x_{0},y_{0}), (x_{1},y_{1})) = \sqrt[2]{(x_{0} - x_{1})^{2} + (y_{0} - y_{1})^{2}}
+            \]
+
+
+            \item Una empresa quiere determinar dónde debe localizar su centro de distribución. La posición en el plano $x-y$ (en kilómetros) de sus cuatro clientes principales y el número de envíos anuales que deben hacer a cada cliente están dados en la siguiente tabla. 
+            \begin{center}
+                \begin{adjustbox}{width = 0.50 \textwidth}
+                  \begin{tabular}{|c |c | c | c|}
+                    \hline
+                     & \multicolumn{2}{|c|}{ Coordenadas.} & \\
+                     \hline 
+                     Cliente & $x$ & $y$ & Cant. envíos. \\
+                     \hline 
+                     1 & 5 & 10 & 200 \\
+                     2 & 10 & 5 & 150 \\
+                     3 & 0 & 12 & 200 \\
+                     4 & 12 & 0 & 300 \\
+                    \hline 
+                  \end{tabular}
+                \end{adjustbox}
+             \end{center}
+
+            ¿Dónde debe instalar el centro de distribución si quiere minimizar la distancia total de envíos que debe hacer por año? 
+            Formular un programa no-lineal para encontrar el punto óptimo. 
+            
+            \item Una compañía hace publicidades de sus productos en dos tipos de programas televisivos:
+            telenovelas y partidos de fútbol. Cada publicidad en una telenovela cuesta \$50, y cada publicidad en un partido de fútbol cuesta \$100. 
+
+            Si se hacen $S$ publicidades en telenovelas lo van a ver $0,5 \  \sqrt[]{S}$ millones de hombres y $2\sqrt{S}$ millones de mujeres. 
+            Si se hacen $F$ publicidades en partidos de fútbol, serán vistas por $1. 7 \sqrt{F}$ millones de hombres, y $0.7 \sqrt{F}$ millones de mujeres. 
+            La compañía quiere que por lo menos 40 millones de hombres y por lo menos 60
+            millones de mujeres vean la propaganda. 
+
+            Formular un programa no-lineal para cumplir con
+            los requisitos de audiencia con costo mínimo. 
+
+            \item Un joven ingeniero de una compañía ha sintetizado un nuevo fertilizante hecho a partir de dos materias primas. 
+            Al combinar cantidades de las materias primas básicas $x_{1} y x_{2}$,
+            la cantidad de fertilizante que se obtiene viene dada por
+            \[
+                Q(x_{1},x_{2}) = 4x_{1} + 2x_{2} - 0.5x_{1}^{2}- 0.25x_{2}^{2}
+            \]  
+            Se requieren \$480000 pesos por unidad de materia prima 1 y \$300000 pesos por cada unidad de materia prima 2 que se empleen en la fabricación del fertilizante (en estas cantidades se incluyen los costos de las materias primas y los costos de producción). 
+            Si la compañía dispone de \$24.000.000 pesos para la producción de materias primas, plantear el problema para determinar la cantidad de materia prima de forma que se maximice la cantidad de fertilizante.
+
+            \item Una empresa produce frigoríficos y ha firmado un contrato para suministrar al menos 150 unidades en tres meses, 50 unidades al final del primer mes, 50 al final del segundo y 50 al final del tercero. 
+            El coste de producir una cantidad de frigoríficos en cualquier mes es su
+            cuadrado. 
+            La empresa puede producir si lo desea más frigoríficos de los que necesita en
+            cualquier mes y guardarlos para el siguiente, siendo el coste de almacenaje de \$12000 pesos por unidad al mes. 
+            Suponiendo que no hay inventario inicial, formular el programa adecuado para determinar el número de frigoríficos que deben producirse cada mes, para
+            minimizar el costo total.
+
+            \item Se poseen los siguientes datos sobre una población animal:  
+            en un año $t_{i}$ se observó una cantidad $y_{i}$ de población de este animal, esto se hizo a lo largo de cinco años. 
+            Queremos ajustar a un modelo $y = ae^{bt}$ para predecir la población $y$ en base al tiempo $t$.
+            \begin{center}
+                \begin{adjustbox}{width = 0.30 \textwidth}
+                  \begin{tabular}{|c |c | c | c|c|c|}
+                    \hline
+                     $t_{i}$ & 1 & 2 & 4 & 5 & 8 \\
+                     \hline
+                     $y_{i}$ & 4 & 4 & 6 & 11 & 22 \\
+                    \hline 
+                  \end{tabular}
+                \end{adjustbox}
+             \end{center}
+            Determinar el error mínimo incurrido.
+
+            \emph{Sugerencia.} Como alternativa pueden usar la medición del error cuadrático medio.
+
+            \item Una compañía planea gastar \$10.000.000 de pesos en publicidad. 
+            Se sabe que un minuto de publicidad en televisión cuesta \$3.000.000 de pesos y \$1.000.000 de pesos en la radio. 
+            Si la empresa compra $x$ minutos de publicidad en televisión e $y$ minutos en la radio, su ingreso, en pesos, está dado por
+            \[
+             I(x,y) = -2x^{2} - y^{2} + xy + 8x + 3y
+            \]
+            ¿Cómo puede la empresa maximizar sus ingresos?
+
+            \item Una compañía petrolera debe determinar cuántos barriles de petróleo hay que extraer en los próximos dos años. 
+            Si la compañía extrae $x_{1}$ millones de barriles durante un año, se
+            pondrá vender cada barril a $30000-x_{1}$ pesos. Si extrae $x_{2}$ millones de barriles durante el segundo año, se podrá vender cada barril a $35000-x_{2}$ pesos. El costo para extraer $x_{1}$ millones de barriles en el primer año es de $x_{1}^{2}$
+            millones de pesos y el costo para extraer $x_{2}$ millones de barriles durante el segundo año es de $2x_{2}^{2}$ millones de pesos. 
+            Se puede obtener como máximo un total de 20 millones de barriles de petróleo, y se puede gastar como máximo 250 millones de pesos en la extracción. 
+
+            Formular un problema de programación no lineal para ayudar a la empresa a maximizar
+            sus ganancias para los próximos dos años.
+
+            \item La funcion Sigmoidea es comunmente utilizada como función de activación
+            en las redes neuronales. 
+            Se define como:
+            \[
+             \sigma(z) = \frac{1}{1+e^{-z}}
+            \]
+            El modelo de regresión logística es un modelo de clasificación en el cual predecimos el valor de $y \in \{0,1\}$ a partir de $x$:
+            \[
+             \hat{y} = \sigma(wx + b)
+            \]
+            A partir de un conjunto de datos $X = \{x_{1},x_{2},\dots,x_{n}\}$ y sus etiquetas $\{y_{1},y_{2}, \dots, y_{n}\}$.
+            Queremos optimizar $w$ y $b$ con tal de minimizar la siguiente función de pérdida.
+            \[
+             {\cal L} = -\frac{1}{N} \sum_{i=1}^{N} y_{i}\log(\hat{y_{i}}) + (1-y_{i}\log(1-\hat{y_{i}}))
+            \]
+            Esta función se conoce como entropía cruzada binaria.
+            \begin{enumerate}[a)]
+                \item Obtener la fórmula del gradiente de ${\cal L}(w,b)$.
+                    \emph{Sugerencia.} Utilizar la regla de la cadena.
+                \item Para el siguiente conjunto de datos realizar una iteración de descenso de gradiente.
+                Utilizar un learning rate $\gamma = 0,05$ y $w=0, b =0$ como punto inicial.
+
+
+                \begin{center}
+                    \begin{adjustbox}{width = 0.15 \textwidth}
+                      \begin{tabular}{|c|c|}
+                         \hline
+                        $x$ & $y$ \\
+                        \hline 
+                        0.52 &  1 \\
+                        -1.27 & 0 \\
+                        0.24 &  1 \\
+                        -0.80 & 1 \\
+                        0.02 &  1 \\
+                        \hline 
+                      \end{tabular}
+                    \end{adjustbox}
+                 \end{center}
+            \end{enumerate}
+
+            \item Optimizar por descenso de gradiente la siguiente función:
+                 \[
+                    f(x,y) = x^{4} + y^{4} - 4xy + 3
+                 \]
+                \begin{enumerate}[a)]
+                    \item Realizar 10 iteraciones utilizando learning rates de $\{0.1, \  0.01, \  0,001\}$. 
+                    Decidir cuál es mejor.
+
+                    \item Utilizar distintos puntos iniciales como semilla y explorar como cam-
+                    bian los mínimos alcanzados. 
+                    Extraer conclusiones al respecto.
+                \end{enumerate} 
+
+            \item  Sean $x,y,z$ el largo, ancho y alto de una caja de cartón respectivamente.
+                El volúmen de la caja se obtiene por medio de 
+                \[
+                    V(x,y,z) = xyz
+                \]    
+                Se cuentan $100 cm^{2}$ de cartón para armar una caja.
+                \begin{enumerate}[a)]
+                    \item Proponer un modelo de optimización no lineal para encontrar las
+                    dimensiones de la caja de forma tal que el volúmen sea máximo.
+                \end{enumerate}
+        \end{enumerate}
+    \end{center}
+\end{document}

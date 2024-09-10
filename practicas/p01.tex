@@ -1,0 +1,228 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\input{macros.tex}
+\usepackage[]{mdframed}
+
+%TCIDATA{TCIstyle=Article/art4.lat,jart,sw20jart}
+\usepackage{amsmath,amsthm,amssymb, amsfonts, amscd, enumerate, multicol}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{LastRevised=Thu Feb 05 14:33:37 2004}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=Spanish}
+
+%\input tcilatex
+\setlength{\textheight}{25cm}
+\setlength{\textwidth}{16.5cm}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\oddsidemargin}{0cm}
+
+
+\begin{document}
+    \begin{center}
+        {\bf UNIVERSIDAD DE SAN ANDR\'ES}
+        \medskip
+        
+        {\bf Investigación operativa.}
+        \medskip
+        
+        {\bf Ejercitaci\'on 1: Introducción a Python y optimización.}
+        \medskip
+
+
+        \begin{enumerate}
+            \item Escribir un código que imprima a la consola las siguientes frases u operaciones \\
+            matemáticas:
+            \begin{enumerate}[a)]
+                \item "Hola mundo".
+                \item 2+3
+                \item 2*3
+                \item $2^{3}$
+                \item $\dfrac{2}{3}$
+                \item $2 \% 3$ (el resto de dividir 2 por 3).
+            \end{enumerate}
+
+            \item Escribir un código que imprima todos los números pares entre 0 y 31, utilizando \textbf{for loops}.
+
+            \item Escribir un código que compute el promedio de la lista de números [1,32,53,14,55,36,27].
+            Hacerlo de dos maneras distintas:
+            \begin{enumerate}[a)]
+                \item Mediante \textbf{for loops.}
+                \item Usando la función \textbf{np.mean}.
+            \end{enumerate}
+
+            \item Escribir una función que tome como input dos números $x_{1},x_{2}$ e imprima a la consola la
+            suma de esos dos números.
+
+            \item 
+            (Introducción a numpy.) El siguiente ejercicio es para que nos familiaricemos con la sintaxis y las funciones de numpy.
+            \begin{enumerate}[a)]
+                \item Importar la librería numpy con el comando “import numpy as np”.
+                \item Considerar la matriz
+                $A = [[1, 2, 0],
+                [3, 0, 4],
+                [1, 0, 3]]$.
+                \item Transformar en un array de numpy con el comando “A = np.array(A)”.
+                \item Corroborar que los comandos $A[0][0]$ y $A[0, 0]$ devuelven el primer elemento en la
+                primera fila, y primera columna.
+                \item Corroborar que el comando A[:,1] devuelve la segunda columna.
+                \item Corroborar que los comandos A[1] y A[1,:] devuelven la segunda fila.
+                \item Corroborar que el comando A[:, -1] devuelve la última columna.
+                \item Corroborar que A[0:2] y A[:,0:2] devuelven las primeras dos filas y las primeras dos
+                columnas respectivamente.
+                \item ¿Qué devuelven los comandos A[-1, -1], A[0:2], A[0:2, 0], A[0:2, 0:2]?
+            \end{enumerate}
+            
+            \item (Producto interno entre vectores).
+                El siguiente ejercicio nos propone implementar el producto interno de vectores.
+                \begin{enumerate}[a)]
+                    \item Escribir un for loop que dadas las dos listas:
+                    \[
+                        A = [2, 10, 16, 2, 4, 12, 24, 100],  \ 
+                        B = [5, 2, 5, 2, 1, 2, 1, 0.5]
+                    \]
+                    
+                    sume la multiplicación coordenada a coordenada de todos sus elementos, es decir:
+                    \[
+                        A[0]*B[0] + A[1]*B[1] + A[2]*B[2] + ... = 2*5 + 10*2 + 16*5 ...
+                    \]
+                    Esta operación es el \emph{producto interno} entre dos vectores (que en python representamos por listas.)
+
+                    \item Importar la librería numpy y transformar ambas listas en arrays de numpy con las
+                    siguientes líneas de código:
+
+                     Import numpy as np
+
+                     A = np.array(A)
+
+                     B = np.array(B)
+                    
+                    \item Corroborar que ahora el comando “np.dot(A, B)” da el mismo resultado que en el ítem a).
+                \end{enumerate}
+
+                \item El siguiente ejercicio nos propone implementar el producto de matrices.
+                \begin{enumerate}[a)]
+                    \item Considerar las matrices
+                    \[
+                        A = [[1, 2, 0],
+                        [3, 0, 4],
+                        [1, 0, 3]], \ \ 
+                        B = [[3, 1, 1],
+                        [1, 2, 0],
+                        [2, 4, 1]]
+                    \]
+                    y transformarlas en arrays de numpy con los siguientes comandos:
+
+                    A = np.array(A)
+
+                    B = np.array(B)
+
+                    \item Hacer un doble for loop y utilizar el ejercicio anterior para construir la matriz A*B.
+
+                    \item Multiplicar las matrices usando el comando abreviado de numpy $A @ B$.
+                \end{enumerate}
+
+                \item  Escribir una función que tome como entrada dos números $x_{1},x_{2}$ y determine si están en el conjunto factible definido por las siguientes restricciones lineales.
+                La salida debe ser un booleano.
+                \caja{
+                    \restdos{2}{3}{24} \\ 
+                    \posit{1} \\
+                    \posit{2}
+                }
+                Usando esta función determinar si los siguientes puntos están en el conjunto factible o no.
+                \begin{enumerate}[a)]
+                    \item $(x_{1},x_{2}) = (1,1)$
+                    \item $(x_{1},x_{2}) = (12,8)$
+                    \item $(x_{1},x_{2}) = (4,8)$
+                    \item $(x_{1},x_{2}) = (-1,0)$
+                    \item $(x_{1},x_{2}) = (-2,2)$
+                \end{enumerate}
+                    
+                \item Para los siguientes problemas de optimización encontrar gráficamente el valor óptimo y los puntos donde alcanza este valor.
+                Para hacer esto pueden graficar las funciones objetivo en el
+                rango de interés y visualmente
+                identificar el punto y valor óptimo. 
+                Para los casos donde haya más de un óptimo, reportar todos los puntos óptimos que existan. Para los casos en que no existe el óptimo, explicar por qué sucede esto.
+                \begin{enumerate}[a)]
+                    \item 
+                        \caja{\min \ x^{2} \\
+                        \\
+                        x \in \R.
+                        }
+                    \item  
+                        \caja{\min \  x^{2} \\
+                        \\
+                        x \ge 2}
+                    \item 
+                        \caja{\max \ x \\
+                            \\
+                              0 \le x}
+                    \item 
+                        \caja{\max x \\
+                                \\
+                              x \le 0 \\
+                              2 \le x}
+                    \item 
+                        \caja{\min \ \cos(x) \\ 
+                        \\
+                        0 \le x \\
+                        x \le 1}
+                    \item 
+                        \caja{\min \  \cos(x) \\
+                        \\
+                        0 \le x \\
+                        x \le 10}
+                \end{enumerate}
+            \item Para los siguientes problemas de optimización, identificar: si el problema es de
+            maximización o minimización, las variables de decisión, la función objetivo, las
+            restricciones de igualdad, si las hay, y las restricciones de desigualdad, si las hay. 
+            Hallar, si es posible, los valores que maximicen/minimicen las funciones objetivos según corresponda
+            utilizando la librería \emph{PICOS}.
+            \begin{enumerate}[a)]
+                \item 
+                    \caja{
+                        \max \ \objetivodos{3}{4} \\
+                        \\
+                        \restdos{}{}{10} \\ 
+                        \restdos{}{0.7}{11} \\
+                        \posit{1} \\
+                        \posit{2}
+                    }
+                \item 
+                    \caja{
+                        \max \ \objetivodos{3}{4} \\
+                        \\
+                        \restdos{}{}{10} \\ 
+                        \restdos{}{0.7}{11} \\
+                        \irestdos{}{-}{0} \\ 
+                        \posit{1} \\
+                        \posit{2}
+                    }
+                    \item 
+                    \caja{
+                        \max \ \objetivodos{30}{100} \\
+                        \\
+                        \restdos{}{}{7} \\ 
+                        \restdos{4}{10}{40} \\
+                        \restuno{-10}{-30} \\
+                        \posit{1} \\
+                        \posit{2}
+                    }
+
+                    \item 
+                    \caja{
+                        \min \ \objetivotres{15}{10}{20} \\
+                        \\
+                        \resttres{0.1}{0.1}{0.7}{60} \\
+                        \iresttres{0.1}{+0.2}{+0.4}{30} \\
+                        \iresttres{0.45}{+0.25}{+0.3}{40} \\
+                        \posit{1} \\
+                        \posit{2} \\
+                        \posit{3} \\
+                    }
+            \end{enumerate}
+        \end{enumerate}
+
+
+    \end{center}
+\end{document}

@@ -1,0 +1,242 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}% Now beamer didn't modify the math fonts
+\usepackage{geometry}
+\input{macros.tex}
+% \usepackage{tikz-cd}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]{}
+\setbeamerfont{footline}{size=\footnotesize}
+\usepackage{tcolorbox}
+\usepackage{biblatex}
+% \usepackage{tikzcd}
+\usetheme{Copenhagen}
+\usepackage{tikz}
+
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+
+\title[]{Clase tutorial 04: Programación entera.}
+% \subtitle{Workshop de LOREL 2024.}
+\date{4 de Septiembre de 2024.}
+\author[]{ Investigación operativa.
+  }
+\institute{Universidad de San Andrés}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Objetivos de la clase de hoy.}
+  La idea de la clase de hoy es ver los siguientes temas:
+  \begin{itemize}
+    \item Traveling salesman.
+    \item Repaso programación lineal.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Problema de traveling salesman.}
+  Sea la siguiente tabla con las distancias que hay entre 8 ciudades distintas (donde un guión - indica que no hay una arista entre ambas ciudades).
+
+  \begin{center}
+    \begin{adjustbox}{width = 0.9 \textwidth}
+        \begin{tabular}{|c |c | c | c| c| c| c | c |}
+          \hline
+          Ciudad & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+          \hline 
+          1 & 14 & 15 & — & — & — & — & 17 \\ 
+          2 &  & 13 & 14 & 20 & — & — & 21 \\
+          3 & & & 11  & 21 &  17 & 9  & 9 \\
+          4 & & & & 11  & 10 & 8 & 20 \\
+          5 & & & & &  15 &  18  & — \\
+          6 & & & & & & 9 & — \\
+          7 & & & & & & & 13 \\
+          \hline
+        \end{tabular}
+    \end{adjustbox}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Problema de traveling salesman.}
+  \tcajita{Problema}{  Si comenzamos nuestro recorrido en la ciudad $1$ encontrar una ruta que pase por todas las ciudades y que minimice el costo.
+  }
+\end{frame}
+
+\begin{frame}[fragile]{Variables de decisión.}
+  Consideramos las variables de decisión binarias 
+  \[
+    x_{ij} \in \{0,1\}, \ \ \ \forall i,j. \ \  1 \le i,j \le 8
+  \]
+  donde: 
+  \[
+  x_{ij} = 
+    \begin{cases}
+      1 & \text{si usamos la arista $i$ a $j$ en el camino } \\
+      0 & \text{si no} \\
+    \end{cases}
+  \]
+  
+  \pause 
+
+  A su vez por ser un problema del traveling salesman agregamos variables auxiliares
+  \[
+    u_{i} \in \{ 1,2 \dots \}, \ \ \ \forall i. \ \  1 \le i \le 8
+  \]
+  que nos ayudan a evitar considerar \emph{subtours}.
+\end{frame}
+
+\begin{frame}[fragile]{Función objetivo.}
+  Queremos minimizar la suma de los costos de cada arista en la ruta.
+
+  \[
+    Z = \sum_{i}^{8}\sum_{j=1}^{8} c_{ij}x_{ij}
+  \]
+
+  donde $c_{ij}$ es la matriz dada por los costos que aparecen en la tabla anterior.
+\end{frame}
+
+\begin{frame}[fragile]{Restricciones.}
+  \begin{itemize}
+    \item Para cada nodo debe haber una sola arista entrando.
+    \pause 
+      \[
+        \sum_{i}^{8} x_{ij} = 1 \ \ \ j = 1,2, \dots 8
+      \]
+
+    \item Para cada nodo debe haber una sola arista saliendo.
+    \pause 
+      \[
+        \sum_{j}^{8} x_{ij} = 1 \ \ \ i = 1,2, \dots 8
+      \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Restricciones.}
+  \begin{itemize}
+    \item Para cada arista tal que su costo sea positivo (exceptuando las aristas incidentes al nodo inicial) agregamos la restricción que evita que hayan subtours en nuestra ruta.
+    \pause 
+      \[
+        u_{i} - u_{j} + 8x_{ij} \le 7, \ \ \ i \neq j, \ \  i,j = 2,3, \dots 8
+      \]
+
+    \pause 
+    \item Restricciones de positividad para $u_{i}$.
+      \[
+        u_{i} \ge 0 \ \ \ \ \forall i. \ \ 1 \le i \le 8
+      \]
+    
+    \item Variables de decisión que valen $0$.
+      \begin{align*}
+        &x_{ii} = 0  & i = 1, \dots, 8 \\
+        &x_{14} = 0  & x_{41} = 0      \\
+        &x_{15} = 0  & x_{51} = 0      \\
+        &\vdots  & \vdots     \\
+      \end{align*}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Solución.}
+  Pasamos a colab para resolverlo.
+\end{frame}
+
+\begin{frame}[fragile]{Problema para pensar 1.}
+  \textbf{Problema 1}.
+
+  Una empresa de autómoviles tiene dos fábricas, dos galpones y tres concesionarias para vender estos autos.
+  Las localizaciones son las siguientes:
+  \begin{itemize}
+    \item Fábricas: Zarate, Villa María.
+    \item Galpones: Rio Cuarto, San Pedro.
+    \item Concesionarias: Buenos Aires, Rosario, Córdoba.
+  \end{itemize}
+  Los autos los hacen en las fábricas y después son llevados a los galpones o bien a las concesionarias. 
+  Zarate puedo producir uno 150 autos por semana, y Villa María puede producir 100 por semana.
+  Buenos Aires requiere 90 autos por semana; Córdoba requiere 70 autos por semana; y Rosario requiere 60 autos por semana.
+  Fabricar un auto cuesta \$25000 y las tablas en la siguiente hoja determinan el precio de trasladar un auto entre dos ciudades. 
+  \emph{Determinar como satisfacer los pedidos semanales de la empresa minimizando el costo.}
+\end{frame}
+
+\begin{frame}[fragile]{Problema para pensar 1: Tabla.}
+  \begin{center}
+    \begin{adjustbox}{width = 1.05 \textwidth}
+        \begin{tabular}{|c|c|c|c|c|c|}
+          \hline
+          Origen/Destino & Rio Cuarto & San Pedro & Buenos Aires & Rosario & Córdoba \\
+          \hline 
+          Zarate      & 1500 & 550  & 750   & 650 & 1400 \\ 
+          Villa María & 450  & 1100 & 1250  & 950 & 700 \\
+          Río Cuarto  & -    & 950  & 1350  & 1100 & 550 \\
+          San Pedro   & 950  &  -   & 950   & 550  & 1200 \\
+           \hline
+        \end{tabular}
+    \end{adjustbox}
+  \end{center}
+  \alert{Modelar matemáticamente este problema y resolverlo usando Python.}
+\end{frame}
+
+\begin{frame}[fragile]{Problema para pensar 2.}
+  \textbf{Problema 2.}
+  Una compañía proveedora de energía eléctrica necesitará la capacidad de producción que se muestra en la tabla para los próximos 5 años.
+  La empresa debe decidir la inversión y operación de distintas fábricas (especificado en las tablas).
+  Encontrar una solución al problema de minimizar el costo cubriendo la demanda de energía.
+  \begin{columns}
+    \begin{column}{0.3 \textwidth}
+      \begin{center}
+        \begin{adjustbox}{width = 1.10 \textwidth}
+            \begin{tabular}{|c|c|}
+              \hline
+              Año & Demanda energética \\ 
+              \hline 
+              1 & 80 \\
+              2 & 100 \\
+              3 & 120 \\
+              4 & 140 \\
+              5 & 160 \\
+              \hline
+            \end{tabular}
+        \end{adjustbox}
+      \end{center}
+    \end{column}
+    \begin{column}{0.7 \textwidth}
+      \begin{center}
+        \begin{adjustbox}{width = 1.08 \textwidth}
+            \begin{tabular}{|c|c|c|c|}
+              \hline
+              Fábrica & Capacidad & Costo construcción & Costos corrientes    \\
+              \hline
+              1 & 70 & 20 & 1,5 \\
+              2 & 50 & 16 & 0.8 \\
+              3 & 60 & 18 & 1.3 \\ 
+              4 & 40 & 14 & 0.6 \\
+              \hline
+            \end{tabular}
+        \end{adjustbox}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Sugerencias.}
+  \textbf{Sugerencias.}:
+  \begin{itemize}
+    \item Pensarlo como un problema de programación entera.
+    \item Definir las variables auxiliares para $i = 1, 2,3,4$
+      \[
+        y_{i} = 
+        \begin{cases}
+          1 & \text{si construimos la fábrica $i$} \\
+          0 & \text{si no} \\
+        \end{cases}
+      \]
+    \item Definir las variables auxiliares para $i=1,\dots,4$ y $j = 1, \dots, 5$.
+      \[
+        \alpha_{ij} = 
+        \begin{cases}
+          1 & \text{la fábrica $i$ estuvo en funcionamiento en el año $j$} \\
+          0 & \text{si no} \\
+        \end{cases}
+      \]
+  \end{itemize}
+  \alert{Modelar matemáticamente este problema y resolverlo usando Python.}
+\end{frame}
+
+\end{document}
