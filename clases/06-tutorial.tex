@@ -1,0 +1,106 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}% Now beamer didn't modify the math fonts
+\usepackage{geometry}
+\input{macros.tex}
+% \usepackage{tikz-cd}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]{}
+\setbeamerfont{footline}{size=\footnotesize}
+\usepackage{tcolorbox}
+\usepackage{biblatex}
+% \usepackage{tikzcd}
+\usetheme{Copenhagen}
+\usepackage{tikz}
+
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+
+\title[]{Clase tutorial 06: Programación entera.}
+% \subtitle{Workshop de LOREL 2024.}
+\date{10 de Septiembre de 2024.}
+\author[]{ Investigación operativa.
+  }
+\institute{Universidad de San Andrés}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Objetivos de la clase de hoy.}
+  La idea de la clase de hoy es ver los siguientes temas:
+  \begin{itemize}
+    \item Problemas no estructurados de programación no lineal y como resolverlos con Python.
+    \item Optimización utilizando semillas aleatorias.
+    \item Descenso del gradiente.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Repaso.}
+  Debemos tener en cuenta algunas diferencias entre la programación lineal y la programación no lineal.
+  \pause 
+  \begin{itemize}
+    \item Las variables de decisión son reales pero al menos la función objetivo o alguna de las restricciones no es una función lineal.
+    \pause 
+    \item Los problemas pueden \textbf{no} tener restricciones.
+    \pause 
+    \item En la implementación usamos Scipy (dejamos de usar Picos por ahora).
+    \pause 
+    \item Para la implementación nos sirve recordar que vale lo siguiente:
+      \[
+        \min_{x \in X} f(x) = - \max_{x \in X} -f(x)
+      \]
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Problema distancia aeropuerto.}
+  Tres ciudades se ubican en los vértices de un triángulo equilátero.
+
+  Un aeropuerto debe construirse en un punto que minimice la distancia a las tres ciudades.
+
+  Construir un problema de programación no lineal para tomar la decisión.
+\end{frame}
+
+\begin{frame}[fragile]{Problema precio de barra de caramelos.}
+  Se considera cargar un precio de venta de una barra de caramelo en el rango de los siguientes precios: como mínimo \$1.10 y como máximo \$ 1.50.
+  
+  Para precios de \$1.10, \$1.30 y \$1.50 el departamento de marketing estimó la demanda en tres regiones donde se va a vender (ver tabla adjunta).
+
+  \begin{center}
+    \begin{adjustbox}{width = 0.9 \textwidth}
+        \begin{tabular}{|c |c | c | c|}
+          \hline
+          & \multicolumn{3}{|c|}{Demanda (en miles)} \\ 
+          \hline 
+          Precio & Región 1 & Región 2 &  Región 3 \\ 
+          \hline
+          Bajo (1.10)  & 35 & 32 & 24 \\
+          Medio (1.30) & 32 & 27 & 17 \\
+          Alto (1.50)  & 22 & 16 & 9 \\
+          \hline 
+        \end{tabular}
+    \end{adjustbox}
+  \end{center}
+
+  Teniendo en cuenta estos datos. 
+  ¿Qué precio maximiza la ganancia?
+\end{frame}
+
+\begin{frame}[fragile]{Problema de semillas aleatorias.}
+  Minimizar la siguiente función en Python: 
+  \[
+    f(x,y) = 
+    0.22x^6 - 1.25x^4 + 2  x^2 + 0.22y^6 - 1.25y^4 + 2y^2
+  \]
+  usar varias semillas aleatorias diferentes y comparar los resultados de optimizar la función con estas semillas.
+\end{frame}
+
+\begin{frame}[fragile]{Problema de descenso del gradiente.}
+  Optimizar usando la técnica de descenso del gradiente la siguiente función: 
+  \[
+    f(x,y) = 6x^{2} + 3y^{4} - 4xy + 2
+  \]
+  
+  Realizar 1000 iteraciones variando el valor de $\gamma$ dentro de $\{0.001,0.00001,0.000001\}$.
+\end{frame}
+
+\end{document}
