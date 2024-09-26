@@ -1,0 +1,98 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}% Now beamer didn't modify the math fonts
+\usepackage{geometry}
+\input{macros.tex}
+% \usepackage{tikz-cd}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]{}
+\setbeamerfont{footline}{size=\footnotesize}
+\usepackage{tcolorbox}
+\usepackage{biblatex}
+% \usepackage{tikzcd}
+\usetheme{Copenhagen}
+\usepackage{tikz}
+
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+
+\title[]{Clase tutorial 06: Programación entera.}
+% \subtitle{Workshop de LOREL 2024.}
+\date{18 de Septiembre de 2024.}
+\author[]{ Investigación operativa.}
+\institute{Universidad de San Andrés}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Objetivos de la clase de hoy.}
+  La idea de la clase de hoy es ver los siguientes temas:
+  \begin{itemize}
+    \item Problemas no estructurados de programación no lineal y como resolverlos con Python.
+    \item Descenso del gradiente.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Problema de producción.}
+  Una empresa produce caucho utilizado para neumáticos combinando tres ingredientes: \emph{caucho, aceite y carbono}. 
+  El costo en centavos por kilo de cada ingrediente se proporciona en la siguiente tabla.
+  \pause 
+
+  \begin{center}
+    \begin{adjustbox}{width = 0.35 \textwidth}
+        \begin{tabular}{|c |c |}
+          \hline
+          Producto & Costo \\ 
+          \hline
+          Caucho   & 4  \\
+          Aceite   & 1  \\
+          Carbono  & 7  \\
+          \hline 
+        \end{tabular}
+    \end{adjustbox}
+  \end{center}
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Problema de producción.}
+  El caucho utilizado en los neumáticos de automóvil debe tener una \textbf{dureza} entre 25 y 35, una \textbf{elasticidad} de al menos 16 y una \textbf{resistencia a la tracción} de al menos 12. 
+  \pause 
+  Para fabricar un juego de cuatro neumáticos de automóvil, se necesitan 100 kilos de producto. 
+
+  Para hacer un juego de cuatro neumáticos éste debe contener entre 25 y 60 kilos de caucho, al menos 5 kilos de aceite y al menos 50 kilos de carbono.
+
+\end{frame}
+
+\begin{frame}[fragile]{Problema de producción.}
+  Si denotamos por: 
+  \begin{itemize}
+    \item $R$ la cantidad en kilos de caucho necesaria par construir cuatro neumáticos.
+    \item $O$ la cantidad en kilos de aceite necesaria par construir cuatro neumáticos.
+    \item $C$ la cantidad en kilos de carbono necesaria par construir cuatro neumáticos.
+  \end{itemize}
+  \pause 
+
+ El análisis estadístico ha demostrado que la dureza, la elasticidad y la resistencia a la tracción de una mezcla de 100 kilos de caucho, aceite y carbono son las siguientes 
+  \begin{align*}
+    &\text{Resistencia tracción} =   12.5 + 0.1O + 0.001O^{2} \\ 
+    &\text{Elasticidad} =  17 + 0.35R + 0.04O + 0.002R \\ 
+    &\text{Dureza} =   34 + 0.1R + 0.06O + 0.3C + 0.001RO + 0.005O^{2}  + 0.001C^{2} \\ 
+  \end{align*}
+\end{frame}
+
+\begin{frame}[fragile]{Problema de producción.}
+  Plantear un problema de programación no lineal que minimize el costo y resolverlo utilizando Python.
+\end{frame}
+
+\begin{frame}[fragile]{Problema de descenso del gradiente.}
+  Optimizar usando la técnica de descenso del gradiente la siguiente función: 
+  \[
+    f(x,y) = 6x^{2} + 3y^{4} - 4xy + 2
+  \]
+  
+  Realizar 1000 iteraciones variando el valor de $\gamma$ dentro de $\{0.001,0.00001,0.000001\}$.
+\end{frame}
+
+\end{document}
