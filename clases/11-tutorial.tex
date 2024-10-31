@@ -1,0 +1,94 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}% Now beamer didn't modify the math fonts
+\usepackage{geometry}
+\input{macros.tex}
+% \usepackage{tikz-cd}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]{}
+\setbeamerfont{footline}{size=\footnotesize}
+\usepackage{tcolorbox}
+\usepackage{biblatex}
+% \usepackage{tikzcd}
+\usetheme{}
+\usepackage{tikz}
+
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+
+\title[]{Clase tutorial 11: Simulación de Monte Carlo.}
+% \subtitle{Workshop de LOREL 2024.}
+\date{30 de Octubre de 2024.}
+\author[]{ Investigación operativa.}
+\institute{Universidad de San Andrés}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Objetivos de la clase de hoy.}
+  La idea de la clase de hoy es ver los siguientes temas:
+  \begin{itemize}
+    \item Simulación de Monte Carlo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Problema 1.}
+En un semáforo se acumulan autos cada vez que su luz se pone roja.
+Supongamos que cada vez que el semáforo se pone en verde todos los autos
+acumulados avanzan. 
+Supongamos también que la cantidad de autos a acumularse en cada iteración es
+independiente de la historia y de los estados anteriores.
+Si la cantidad de autos a acumularse en cada luz roja sigue la siguiente distribución de probabilidad.
+\begin{center}
+  \begin{adjustbox}{width = 0.85 \textwidth}
+      \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Cantidad de Autos & 0    & 1   & 2    & 3    & 4 \\
+        \hline 
+        $\mathbb{P}$      & 0.15 & 0.2 & 0.35 & 0.23 & 0.07 \\
+        \hline 
+      \end{tabular}
+  \end{adjustbox}
+\end{center}
+
+Simular 10, 100 y 1000 veces el semáforo en rojo.
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Problema 2.}
+ Utilizar el método de simulación de Monte Carlo para aproximar la constante $\pi$.
+\end{frame}
+
+\begin{frame}[fragile]{Problema 3.}
+  El \textbf{craps} es un juego de dados sencillo dado por las siguientes reglas.
+  Tiramos dos dados.
+  Si suman 7 o un 11 entonces ganamos de inmediato.
+  Si suman 2,3 o 12 entonces perdemos de inmeadiato.
+  En cualquier otro caso volvemos a tirar.
+
+  \begin{enumerate}[a)]
+    \item Pensar analíticamente qué porcentaje de veces deberíamos ganar.
+
+    \item Resolverlo empíricamente por medio de simulaciones.
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Tarea.}
+  
+La \textbf{guerra} es un juego sencillo de cartas que se juega de a dos personas.
+A cada persona se le reparte la mitad de un mazo de 52 cartas francesas. 
+En cada turno ambos jugadores tiran la primera carta de su mazo y la comparan. 
+Quien tenga la carta más alta gana un punto y en caso que ambas cartas sean iguales entonces la próxima carta decide quién se queda con dos puntos y así continua el juego hasta que se agota el mazo. Eventualmente el ganador es quien consiga más puntos.
+
+
+
+
+
+\begin{enumerate}[a)]
+  \item Simular una partida entre dos manos arbitrarias y anotarlo en una tabla (no hace falta hacer un programa que nos de la tabla.)
+\end{enumerate}
+\end{frame}
+
+\end{document}

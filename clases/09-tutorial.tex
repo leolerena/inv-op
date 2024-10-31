@@ -1,0 +1,108 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}% Now beamer didn't modify the math fonts
+\usepackage{geometry}
+\input{macros.tex}
+% \usepackage{tikz-cd}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]{}
+\setbeamerfont{footline}{size=\footnotesize}
+\usepackage{tcolorbox}
+\usepackage{biblatex}
+% \usepackage{tikzcd}
+\usetheme{}
+\usepackage{tikz}
+
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+
+\title[]{Clase tutorial 09: Repaso de probabilidad y estadística.}
+% \subtitle{Workshop de LOREL 2024.}
+\date{16 de Octubre de 2024.}
+\author[]{ Investigación operativa.}
+\institute{Universidad de San Andrés}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Objetivos de la clase de hoy.}
+  La idea de la clase de hoy es ver los siguientes temas:
+  \begin{itemize}
+    \item Repasar temas de probabilidad y estadística.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Problema 1.}
+  El \emph{settlers of Catan} es un juego de mesa en el cual varios jugadores construyen caminos y ciudades en un mapa hexagonal teselado por hexágonos.
+  Cada hexagono tiene un número del 2 al 12.
+  Cada ciudad se construye en la esquina de tres hexagonos. 
+  En cada turno se tiran dos dados de seis caras y si la suma de los dos dados coincide con uno de los números de los tres hexagonos donde está construida la ciudad, en ese caso el jugador obtiene 1 unidad de lo que se produce en ese hexagono.
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Problema 1.}
+  \makebox[0pt][l]{%
+\begin{minipage}{\textwidth}
+\centering
+    \includegraphics[width=.88\textwidth]{catan2.jpg}
+\end{minipage}
+}
+\end{frame}
+
+\begin{frame}[fragile]{Problema 1.}
+  Una ubicación en el Catan va a estar determinado por una tripla $(i,j,k)$ tal que $2 \le i,j,k \le 12$ tal que no puede ser que $i=j=k$.
+  \bigskip 
+  \pause 
+
+  \begin{enumerate}[a)]
+    \item Decidir de manera analítica cuál de las siguientes ubicaciones conviene construir una ciudad.
+    \begin{itemize}
+      \item Ubicación 1: $(9,6,3)$.
+      \item Ubicación 2: $(9,12,4)$
+      \item Ubicación 3: $(6,10,11)$
+    \end{itemize}
+    {\footnotesize{Comentario: En esta versión simplificada nos es indiferente los distintos recursos.}}
+
+    \item Si tenemos que construir en dos ubicaciones, ¿en cuáles dos conviene construir si queremos maximizar la cantidad de veces que los dados suman uno de los números de nuestras ubicaciones? 
+    
+    \item Escribir código en Python para resolverlo de manera empírica. 
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Problema 2.}
+  Un comerciante aburrido decidió contar en el horario pico de su negocio la cantidad de tiempo que pasa entre que entra un grupo de personas hasta que ingresa el siguiente grupo de personas.
+  Observó que este proceso sigue una distribución exponencial.
+  Si se sabe que en promedio entran 30 personas a su local por hora entonces resolver los siguientes problemas de manera analítica y de manera empírica.
+\end{frame}
+
+\begin{frame}[fragile]{Problema 2.}
+  \begin{enumerate}[a)]
+    \item Sea $X$ la variable aleatoria que modela la cantidad de \textbf{minutos} que pasa hasta que vuelve a entrar un grupo de personas al local. 
+    ¿Cuánto es la media de esta variable aleatoria?
+    \item ¿Cuál es la probabilidad que un grupo de personas llegue menos de un minuto después que el último grupo de personas que ingresó al local?
+    \item ¿Cuál es la probabilidad que un grupo de personas llegue más de cinco minutos después que el último grupo de personas que ingresó al local?
+    \item En promedio, el 70\% de los grupos de personas que ingresa al local ¿cuántos minutos después del anterior grupo lo realiza?
+  \end{enumerate}
+\end{frame}
+  
+\begin{frame}[fragile]{Tarea.}
+  \begin{enumerate}
+    \item Si retomamos el problema 1 de esta clase.
+
+    \begin{itemize}
+      \item Pensar qué pasaría si elegimos dos ubicaciones para maximizar la cantidad de unidades que obtenemos.
+
+      {\footnotesize{Ejemplo: Si nuestra ubicación es $(9,9,2)$ y los dados suman $9$ luego obtenemos dos unidades.} }
+
+      \item Encontrar empíricamente la ubicación que maximiza la cantidad de unidades que obtenemos.
+    \end{itemize}
+    
+    \item Se tomó un examen de ingreso para 850 alumnos. 
+    Se sabe que las notas del examen siguen una distribución normal con media $5,5$ y con desvío estandar $1,1$.
+
+    Si para ingresar se necesita una nota mayor o igual a 8, ¿cuánta gente ingresó? Resolverlo simulándolo empíricamente. 
+  \end{enumerate}
+\end{frame}
+
+\end{document}

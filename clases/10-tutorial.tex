@@ -1,0 +1,76 @@
+\documentclass{beamer}
+\usefonttheme{professionalfonts}% Now beamer didn't modify the math fonts
+\usepackage{geometry}
+\input{macros.tex}
+% \usepackage{tikz-cd}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[page number]{}
+\setbeamerfont{footline}{size=\footnotesize}
+\usepackage{tcolorbox}
+\usepackage{biblatex}
+% \usepackage{tikzcd}
+\usetheme{}
+\usepackage{tikz}
+
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+
+\title[]{Clase tutorial 10: Repaso de probabilidad y estadística.}
+% \subtitle{Workshop de LOREL 2024.}
+\date{22 de Octubre de 2024.}
+\author[]{ Investigación operativa.}
+\institute{Universidad de San Andrés}
+% \titlegraphic{\hfill\includegraphics[height=1.5cm]{logo.pdf}}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Objetivos de la clase de hoy.}
+  La idea de la clase de hoy es ver los siguientes temas:
+  \begin{itemize}
+    \item Seguir repasando temas de probabilidad y estadística.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Problema 1.}
+  La vida util en días de las lamparitas marca Osram tiene una distribución exponencial de media 100 y la de las lamparidas marca Philips tiene una distribución exponencial de media 150. 
+  Si nos regalaron una lamparita (la eligieron al azar sin mirar la marca, pero se sabe que es Osram o Philips) y la estamos usando hace a 200 días sin que se queme, ¿cuál es la probabilidad de que sea Philips?
+\end{frame}
+
+
+\begin{frame}[fragile]{Problema 2.}
+  El modelo binomial para el precio de una acción supone que si el precio presente de la acción es $S_0$, entonces luego de un periodo su valor será $S_1 = uS_0$ con probabilidad $p$ y $S_1 = dS_0$ con probabilidad $1 - p$.
+Asumimos que los movimientos del precio en cada periodo son independientes. Asumimos para simplificar que $d = \frac{1}{u}$ y $p = 0.5$, $u = 1.012$.
+
+Decir como está distribuida $S_n$, la variable aleatoria que nos da el precio de la acción luego de $n$ periodos.
+
+Para $n = 1000$, calcular la probabilidad de que el precio de la acción sea un $30\%$ mayor al inicial $S_0$. 
+Hacerlo también aproximando con una normal.
+\end{frame}
+
+\begin{frame}[fragile]{Problema 3.}
+  $6$ amigos se quieren juntar en una pizzería y hacen una reserva para las $9:00 \text{ pm}$. Si todos llegan $10$ minutos tarde pierden la reserva. Supongamos que el tiempo de llegada de los amigos es independiente, centrado en las $9:00 \text{ pm}$ y esta distribuido como $\mathcal{U}(-5,25)$. 
+  
+  ¿Cuál es la probabilidad de que pierdan la reserva?
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Tarea.}
+  
+La cantidad de insectos que arriban a la mesa de un asado responde
+a una distribución Poisson de media $\lambda = 60$ por hora. Cada insecto
+puede ser una mosca con probabilidad $p = 2/3$. La cantidad de insectos
+y la naturaleza de cada uno de ellos son independientes.
+
+\begin{enumerate}[a)]
+  \item Dado que arribaron 60 insectos, ¿cual es la distribución de la
+  cantidad de moscas en la mesa?
+  
+  \item Hallar la probabilidad de que arriben 50 insectos y 35 de ellos
+  sean moscas.
+\end{enumerate}
+\end{frame}
+
+\end{document}
